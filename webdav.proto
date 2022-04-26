@@ -1,0 +1,31 @@
+syntax = "proto3";
+package webdav;
+
+option go_package = "./;webdavrpc";
+
+message MountWebdavRequest {
+  string url = 1;
+  string dir = 2;
+  string user = 3;
+  string password = 4;
+  string configName = 5;
+  string uid = 6;
+  string gid = 7;
+  string target = 8;
+}
+
+message MountWebdavResponse {
+  string output = 1;
+}
+
+message UmountWebdavRequest {
+  string mountTarget = 1;
+  string configName = 2;
+}
+
+message UmountWebdavResponse { string output = 1; }
+
+service MountService {
+  rpc MountWebdav(MountWebdavRequest) returns (MountWebdavResponse) {};
+  rpc UmountWebdav(UmountWebdavRequest) returns (UmountWebdavResponse) {};
+}
